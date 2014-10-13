@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.all()
   end
 
   # GET /questions/1
@@ -22,6 +22,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
+    @question.user_id=current_user.id
     Oracle.give_answer(@question)
 
     respond_to do |format|
@@ -38,6 +39,9 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    if (@question.user_id != current_user.id)
+      throw "Cannot delete the question!"
+    end
     @question.destroy
     respond_to do |format|
       format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
@@ -46,13 +50,13 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def question_params
-      params.require(:question).permit(:question, :answer)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def question_params
+    params.require(:question).permit(:question, :answer)
+  end
 end

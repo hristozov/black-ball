@@ -1,8 +1,8 @@
-<%= link_to "Home", root_path %>
+<%= link_to "Начало", root_path %>
 <% unless logged_in? %>
-    <%= link_to "Sign Up", new_user_path %>
-    <%= link_to "Log In", new_session_path %>
+    <%= link_to "Регистрация", new_user_path %>
+    <%= link_to "Вход", new_session_path %>
 <% end %>
 <% if logged_in? %>
-    <%= link_to "Logout", logout_path %>
+    <%= link_to "Изход", logout_path %>
 <% end %>

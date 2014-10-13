@@ -2,10 +2,10 @@
 
 one:
   email: MyString
-  passowrd_digest: MyString
+  password_digest: MyString
   name: MyString
 
 two:
   email: MyString
-  passowrd_digest: MyString
+  password_digest: MyString
   name: MyString

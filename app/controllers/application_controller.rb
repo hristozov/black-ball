@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
+
+  rescue_from "Exception", with: :forbidden
+
+  private
+
+  def forbidden(exception)
+    render text: exception.message
+  end
 end

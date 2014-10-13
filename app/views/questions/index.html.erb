@@ -1,6 +1,8 @@
 <%= image_tag "bb.jpg" %>
 <h1>Въпроси към оракула</h1>
 
+<div class="askButton"><%= link_to 'Задай въпрос', new_question_path %></div>
+
 <table>
   <thead>
   <tr>
@@ -28,5 +30,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Question', new_question_path %>

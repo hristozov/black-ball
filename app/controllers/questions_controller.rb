@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
-    if (@question.user_id != current_user.id)
+    if (@question.user_id != 131)
       throw "Cannot delete the question!"
     end
     @question.destroy

@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_filter :authorize, only: [:delete, :create]
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:destroy, :create, :new]
+  before_action :set_question, only: [:show, :destroy]
 
   # GET /questions
   # GET /questions.json
@@ -18,10 +18,6 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  # GET /questions/1/edit
-  def edit
-  end
-
   # POST /questions
   # POST /questions.json
   def create
@@ -34,20 +30,6 @@ class QuestionsController < ApplicationController
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /questions/1
-  # PATCH/PUT /questions/1.json
-  def update
-    respond_to do |format|
-      if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
